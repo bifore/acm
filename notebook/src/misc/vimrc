@@ -1,0 +1,8 @@
+nnoremap <CR> :!python3 check.py<CR>
+syntax on
+filetype plugin on
+set nu       "number
+set ts=4     "tabstop
+set sw=4     "shiftwidth
+set et       "expandtab
+set so=5     "scrolloff
