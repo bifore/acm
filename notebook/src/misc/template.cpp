@@ -27,7 +27,7 @@ int main(int argc, char** argv)
     ios_base::sync_with_stdio(0);
     if(argc == 1)
     {
-        freopen((PB_NAME + ".in").c_str(), "r", stdin);
-        freopen((PB_NAME + ".out").c_str(), "w", stdout);
+        freopen("PB_NAME.in", "r", stdin);
+        freopen("PB_NAME.out", "w", stdout);
     }
 }
