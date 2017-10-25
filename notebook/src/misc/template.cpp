@@ -1,3 +1,4 @@
+#include <iostream>
 #include <vector>
 #include <string>
 #include <algorithm>
@@ -12,6 +13,14 @@
 #define mt make_tuple
 #define mp make_pair
 
+#define fi first
+#define se second
+
+#define X(A) get<0>(A)
+#define Y(A) get<1>(A)
+#define Z(A) get<2>(A)
+#define W(A) get<3>(A)
+
 using namespace std;
 
 using lli = long long int;
@@ -21,6 +30,9 @@ using vvi = vector<vi>;
 
 using vb = vector<bool>;
 using vvb = vector<vb>;
+
+using ii = pair<lli, lli>;
+using iii = pair<ii, lli>;
 
 int main(int argc, char** argv)
 {
