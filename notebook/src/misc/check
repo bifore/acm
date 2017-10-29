@@ -1,0 +1,17 @@
+#!/bin/sh
+
+clear
+if g++ -g -O2 -Wall -Wextra -std=gnu++14 -static "$@" -lm code.cpp -o elf; then
+    for f in *.in; do
+        f=${f%.in}
+        printf "Test $f: "
+        time -f "%es" ./elf check < $f.in > .tmp.out
+        if diff -q -b .tmp.out $f.out >/dev/null; then
+            echo "PASS"
+        else
+            echo "FAIL"
+            diff -y .tmp.out $f.out
+        fi
+        printf "\n"
+    done
+fi

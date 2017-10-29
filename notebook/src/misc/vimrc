@@ -1,9 +1,35 @@
-nnoremap <CR> :!python3 check.py<CR>
+set nocompatible "helpful to test this vimrc
+
 syntax on
 filetype plugin on
+set cc=80    "colorcolum
+set bg=dark  "background
+
 set nu       "number
 set ts=4     "tabstop
 set sw=4     "shiftwidth
 set et       "expandtab
 set so=5     "scrolloff
 set sm       "showmatch
+
+set ai       "autoindent
+set si       "smartindent
+set sr       "shiftround
+set bs=2     "backspace=indent,eol,start 
+
+set hls      "hlsearch
+set ic       "ignorecase
+
+set nobk     "nobackup
+set nowb     "nowritebackup
+set noswf    "noswapfile
+
+"fast save/quit
+let mapleader="\<Space>"
+nmap <leader>w :w<CR>
+nmap <leader>q :q<CR>
+
+"custom check script
+nnoremap <CR> :w<CR>:!./check<CR>
+
+map 0 ^
