@@ -8,6 +8,7 @@
 #include <cstdio>
 
 #define FOR(i, n) for(lli i = 0; i < (lli) n; ++i)
+#define ALL(x) (x).begin(), (x).end()
 
 #define pb push_back
 #define mt make_tuple
