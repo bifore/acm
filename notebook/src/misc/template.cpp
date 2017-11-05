@@ -35,10 +35,13 @@ using vvb = vector<vb>;
 using ii = pair<lli, lli>;
 using iii = pair<ii, lli>;
 
-int main(int argc, char**)
+int main(void)
 {
     ios_base::sync_with_stdio(0);
-    if(argc == 1) {freopen("PB_NAME.in","r",stdin);freopen("PB_NAME.out","w",stdout);}
+    #ifndef check_script
+        freopen("PB_NAME.in", "r", stdin);
+        freopen("PB_NAME.out", "w", stdout);
+    #endif
 
     return 0;
 }
