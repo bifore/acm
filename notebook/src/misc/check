@@ -1,11 +1,11 @@
 #!/bin/sh
 
 clear
-if g++ -g -O2 -Wall -Wextra -std=gnu++14 -static "$@" -lm code.cpp -o elf; then
+if g++ -D check_script -g -O2 -Wall -Wextra -std=gnu++14 -static "$@" -lm code.cpp -o elf; then
     for f in *.in; do
         f=${f%.in}
         printf "Test $f: "
-        ./elf check < $f.in > .tmp.out
+        ./elf < $f.in > .tmp.out
         if [ -f $f.out ]; then
             if diff -q -b .tmp.out $f.out >/dev/null; then
                 echo "PASS"

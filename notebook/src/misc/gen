@@ -4,8 +4,7 @@ PB_NAME=$2
 mkdir $PB_ID
 cp template.cpp $PB_ID/code.cpp
 if [ -z "$PB_NAME" ]; then
-    sed -i "/PB_NAME/d" $PB_ID/code.cpp
-    sed -i "/argc/c\int main(void)" $PB_ID/code.cpp
+    sed -i "/check_script/,+3d" $PB_ID/code.cpp
 else
     sed -i "s/PB_NAME/$PB_NAME/g" $PB_ID/code.cpp
 fi
