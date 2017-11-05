@@ -12,8 +12,11 @@
 \renewcommand\cftsecpagefont{\fontsize{8}{9}\mdseries}
 \renewcommand\cftsubsecfont{\fontsize{5}{6}\mdseries}
 \renewcommand\cftsubsecpagefont{\fontsize{5}{6}\mdseries}
+\renewcommand\cftsubsubsecfont{\fontsize{5}{6}\mdseries}
+\renewcommand\cftsubsubsecpagefont{\fontsize{5}{6}\mdseries}
 \renewcommand\cftsecafterpnum{\vspace{-1ex}}
 \renewcommand\cftsubsecafterpnum{\vspace{-1ex}}
+\renewcommand\cftsubsubsecafterpnum{\vspace{-1ex}}
 
 \newmintedfile[pythoncode]{python}{
     numbersep=2.5mm,
@@ -35,7 +38,7 @@
     fontsize=\fontsize{5.5}{6},
     frame=lines,
 }
-\newmintedfile[cppcode]{cpp}{
+\newmintedfile[cppcode]{mdcpp}{
     codetagify=FOR,
     numbersep=2.5mm,
     xleftmargin=7.5mm,
@@ -82,7 +85,42 @@
 \tableofcontents
 \pagestyle{fancy}
 
-\input contents.tex
+\section{Miscellaneous}
+
+\subsection{check}
+\shcode{src/misc/check}
+
+\subsection{template.cpp}
+\cppcode{src/misc/template.cpp}
+\hrulefill
+
+\subsection{gen}
+\shcode{src/misc/gen}
+
+\subsection{.vimrc}
+\vimcode{src/misc/vimrc}
+
+\section{Math}
+
+\subsection{Fast Fourier Transform}
+\cppcode{src/math/fft.cpp}
+
+\subsection{Integral approximation}
+
+\subsubsection{Gauss-Legendre quadrature $n = 2$}
+\begin{equation}
+    \int_{-1}^{1} f(x) \, \mathrm{d}x \approx
+    f\left(-\frac{1}{\sqrt{3}}\right) +
+    f\left(+\frac{1}{\sqrt{3}}\right)
+\end{equation}
+
+\subsubsection{Gauss-Legendre quadrature $n = 3$}
+\begin{equation}
+    \int_{-1}^{1} f(x) \, \mathrm{d}x \approx
+    \frac{5}{9} \, f\left(-\frac{3}{\sqrt{5}}\right) +
+    \frac{8}{9} \, f\left(0\right) +
+    \frac{5}{9} \, f\left(+\frac{3}{\sqrt{5}}\right)
+\end{equation}
 
 \end{multicols}
 \end{landscape}
