@@ -1,13 +1,17 @@
 #!/bin/sh
 PB_ID=$1
 PB_NAME=$2
-mkdir $PB_ID
-cp template.cpp $PB_ID/code.cpp
-if [ -z "$PB_NAME" ]; then
-    sed -i "/check_script/,+3d" $PB_ID/code.cpp
+if [ ! -d "$PB_ID" ]; then
+    mkdir $PB_ID
+    cp template.cpp $PB_ID/code.cpp
+    if [ -z "$PB_NAME" ]; then
+        sed -i "/check_script/,+3d" $PB_ID/code.cpp
+    else
+        sed -i "s/PB_NAME/$PB_NAME/g" $PB_ID/code.cpp
+    fi
+    cp check $PB_ID
+    cd $PB_ID
+    vim -u ../vimrc -p 1.in 1.out 2.in 2.out 3.in 3.out code.cpp
 else
-    sed -i "s/PB_NAME/$PB_NAME/g" $PB_ID/code.cpp
+    printf "ERROR: Directory '$PB_ID' already exists!\n"
 fi
-cp check $PB_ID
-cd $PB_ID
-vim -u ../vimrc -p 1.in 1.out 2.in 2.out 3.in 3.out code.cpp
