@@ -8,7 +8,9 @@ set bg=dark  "background
 set nu       "number
 set ts=4     "tabstop
 set sw=4     "shiftwidth
+set sts=4    "softtabstop
 set et       "expandtab
+set sta      "smarttab
 set so=5     "scrolloff
 set sm       "showmatch
 
