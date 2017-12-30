@@ -4,7 +4,7 @@ clear
 if g++ -D check_script -g -O2 -Wall -Wextra -std=gnu++14 -static "$@" -lm code.cpp -o elf; then
     for f in *.in; do
         f=${f%.in}
-        printf "Test $f: "
+        printf "Test $f:\n"
         ./elf < $f.in > .tmp.out
         if [ -f $f.out ]; then
             if diff -q -b .tmp.out $f.out >/dev/null; then
