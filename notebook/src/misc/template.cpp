@@ -96,7 +96,7 @@ int main(void)
 
 
     #ifdef check_script
-        cerr << "Time elapsed: " << 1.0 * clock() / CLOCKS_PER_SEC << " s.\n";
+        cout << "Time elapsed: " << 1.0 * clock() / CLOCKS_PER_SEC << " s.\n";
     #endif
     return 0;
 }
