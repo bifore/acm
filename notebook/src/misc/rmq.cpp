@@ -8,10 +8,10 @@
 void rmq_dp(void)
 {
     int dp[n + 1][n + 1];
-    for(int i = 0; i < n; ++i)
+    FOR(i, n)
         dp[i][i] = a[i];
-    for(int i = 0; i < n; ++i)
-        for(int j = i + 1; j < n; ++j)
+    FOR(i, n)
+        FORU(j, i + 1, n - 1)
             dp[i][j] = min(dp[i][j - 1], a[j]);
 }
 
@@ -22,7 +22,7 @@ void rmq_sqrt_precompute(void)
 {
     int len = (int)(sqrt((double)(n)) + 1);
     vector<int> b(len, INF);
-    for(int i = 0; i < n; ++i)
+    FOR(i, n)
         b[i / len] = min(b[i / len], a[i]);
 }
 
@@ -75,16 +75,16 @@ void rmq_st_precompute(void)
     int k = log2(n);
     int dp[n + 1][k + 1];
 
-    for(int i = 0; i < n; ++i)
+    FOR(i, n)
         dp[i][0] = a[i];
-    for(int j = 1; j <= k; ++j)
+    FORU(j, 1, k)
         for(int i = 0; i + (1 << j) <= n; ++i)
             dp[i][j] = min(dp[i][j - 1], dp[i + (1 << (j - 1))][j - 1]);
 
     // If needed you can also precompute log2
     int log[n + 1];
     log[1] = 0;
-    for(int i = 2; i < n; ++i) 
+    FORU(i, 2, n - 1)
         log[i] = log[i / 2] + 1;
 }
 
