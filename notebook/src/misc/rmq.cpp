@@ -18,7 +18,7 @@ void rmq_dp(void)
 // SQRT Decomposition
 // <O(N), O(sqrt(N))>
 // https://e-maxx-eng.appspot.com/data_structures/sqrt_decomposition.html
-void rmq_sqrt_preprocessing(void)
+void rmq_sqrt_precompute(void)
 {
     int len = (int)(sqrt((double)(n)) + 1);
     vector<int> b(len, INF);
@@ -65,4 +65,31 @@ int rmq_sqrt_query2(int l, int r)
             ans = min(ans, a[j]);
     }
     return ans;
+}
+
+// Sparse Table
+// <O(N * log(N)), O(1)>
+// https://e-maxx-eng.appspot.com/data_structures/sparse-table.html
+void rmq_st_precompute(void)
+{
+    int k = log2(n);
+    int dp[n + 1][k + 1];
+
+    for(int i = 0; i < n; ++i)
+        dp[i][0] = a[i];
+    for(int j = 1; j <= k; ++j)
+        for(int i = 0; i + (1 << j) <= n; ++i)
+            dp[i][j] = min(dp[i][j - 1], dp[i + (1 << (j - 1))][j - 1]);
+
+    // If needed you can also precompute log2
+    int log[n + 1];
+    log[1] = 0;
+    for(int i = 2; i < n; ++i) 
+        log[i] = log[i / 2] + 1;
+}
+
+int rmq_st_query(int l, int r)
+{
+    int k = log2(r - l + 1);
+    return min(dp[l][k], dp[r - (1 << k) + 1][k]);
 }
