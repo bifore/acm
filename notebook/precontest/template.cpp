@@ -55,6 +55,7 @@ ostream& operator<<(ostream& s, pair<A, B> const& a) { return s << "(" << (a).fi
 #define W(A) get<3>(A)
 
 using ll = long long int;
+using ld = long double;
 using vi = vector<int>;
 using vl = vector<ll>;
 using vb = vector<bool>;
