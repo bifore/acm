@@ -1,7 +1,7 @@
 const int MAX_N = 1000;
 
 int parent[MAX_N + 5];
-int rank[MAX_N + 5];
+int rk[MAX_N + 5];
 int n;
 
 void init(void)
@@ -20,12 +20,12 @@ void unite(int a, int b)
 {
     a = find(a);
     b = find(b);
-    if(rank[a] < rank[b])
+    if(rk[a] < rk[b])
         parent[a] = b;
     else
         parent[b] = a;
-    if(rank[a] == rank[b])
-        ++rank[a];
+    if(rk[a] == rk[b])
+        ++rk[a];
 }
 
 // Shorter version (without rank compression), usually faster in practice
