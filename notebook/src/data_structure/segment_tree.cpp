@@ -6,7 +6,7 @@
 const int T_MAX = 2 * N;
 
 int n;
-int t[T_MAX];
+int t[T_MAX]; // read input values starting from n: forn(i, n) cin >> t[n + i];
 
 const int NEUTRAL = ???; // (for any x) F(NEUTRAL, x) = F(x, NEUTRAL) = x
 int func(int a, int b);
