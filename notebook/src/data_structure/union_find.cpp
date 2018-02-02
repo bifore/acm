@@ -6,7 +6,7 @@ int n;
 
 void init(void)
 {
-    FORU(i, 1, n)
+    foru(i, 1, n)
         parent[i] = i;
 }
 

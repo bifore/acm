@@ -20,9 +20,9 @@ int func(int a, int b);
 
 void precompute(void)
 {
-    FOR(i, n)
+    forn(i, n)
         dp[i][0] = a[i];
-    FORU(j, 1, K)
+    foru(j, 1, K)
         for(int i = 0; i + (1 << j) <= n; ++i)
             dp[i][j] = func(dp[i][j - 1], dp[i + (1 << (j - 1))][j - 1]);
 }
@@ -30,7 +30,7 @@ void precompute(void)
 int query(int l, int r)
 {
     int ans = NEUTRAL;
-    FORD(j, K, 0) {
+    ford(j, K, 0) {
         if(l + (1 << j) - 1 <= r) {
             ans = func(ans, dp[l][j]);
             l += (1 << j);

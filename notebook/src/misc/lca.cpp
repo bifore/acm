@@ -55,14 +55,14 @@ void lca_dp_precompute(void)
 {
     calc_depth(root, 0);
 
-    FORU(i, 1, n)
+    foru(i, 1, n)
         for(int j = 0; (1 << j) <= n; ++j)
             dp[i][j] = -1;
-    FORU(i, 1, n)
+    foru(i, 1, n)
         dp[i][0] = parent[i];
 
     for(int j = 1; (1 << j) <= n; ++j)
-        FORU(i, 1, n)
+        foru(i, 1, n)
             if(dp[i][j - 1] != -1)
                 dp[i][j] = dp[dp[i][j - 1]][j - 1];
 }
@@ -72,12 +72,12 @@ int lca_dp_query(int u, int v)
     if(depth[u] < depth[v])
         swap(u, v);
 
-    FORD(i, LOG_MAX, 0)
+    ford(i, LOG_MAX, 0)
         if(depth[u] - (1 << i) >= depth[v])
             u = dp[u][i];
     if(u == v)
         return u;
-    FORD(i, LOG_MAX, 0)
+    ford(i, LOG_MAX, 0)
         if(dp[u][i] != -1 && dp[u][i] != dp[v][i])
             u = dp[u][i], v = dp[v][i];
     return parent[u];

@@ -36,9 +36,9 @@ ostream& operator<<(ostream& s, pair<A, B> const& a) { return s << "(" << (a).fi
 
 #define endl '\n'
 
-#define FOR(i, n) for(ll i = 0; i < (ll)(n); ++i)
-#define FORU(i, j, k) for(ll i = (ll)(j); i <= (ll)(k); ++i)
-#define FORD(i, j, k) for(ll i = (ll)(j); i >= (ll)(k); --i)
+#define forn(i, n) for(ll i = 0; i < (ll)(n); ++i)
+#define foru(i, j, k) for(ll i = (ll)(j); i <= (ll)(k); ++i)
+#define ford(i, j, k) for(ll i = (ll)(j); i >= (ll)(k); --i)
 
 #define SQ(x) ((x) * (x))
 
