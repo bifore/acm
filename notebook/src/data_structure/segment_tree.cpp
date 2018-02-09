@@ -1,36 +1,68 @@
-// http://codeforces.com/blog/entry/18051
-// this implementation even works for non-commutative functions and supports
-// modification
+// https://github.com/radoslav11/Coding-Library/blob/master/data_structures/segment_tree.cpp
 
-
-const int T_MAX = 2 * N;
+const int MAX_N = ???
 
 int n;
-int t[T_MAX]; // read input values starting from n: forn(i, n) cin >> t[n + i];
+int a[MAX_N];
 
-const int NEUTRAL = ???; // (for any x) F(NEUTRAL, x) = F(x, NEUTRAL) = x
-int func(int a, int b);
-
-void build(void)
+struct node
 {
-    for(int i = n - 1; i > 0; --i)
-        t[i] = func(t[2 * i], t[2 * i + 1]);
+    int sum;
+    node() { sum = 0; }
+    node(int v) { sum = v; }
+};
+
+node tmp, neutral;
+
+node merge(node a, node b)
+{
+    tmp.sum = a.sum + b.sum;
+    return tmp;
 }
 
-void modify(int p, int value)
+struct segment_tree
 {
-    t[p += n] = value;
-    while(p /= 2)
-        t[p] = func(t[2 * p], t[2 * p + 1]);
-}
+    node tree[4 * MAX_N];
 
-// If you need interval [l;r) instead of [l;r], use 'r += n' (without the +1)
-int query(int l, int r)
-{
-    int resl = NEUTRAL, resr = NEUTRAL;
-    for(l += n, r += n + 1; l < r; l /= 2, r /= 2) {
-        if(l&1) resl = func(resl, t[l++]);
-        if(r&1) resr = func(t[--r], resr);
+    void init(int idx, int left, int right)
+    {
+        if(left == right)
+        {
+            tree[idx] = node(a[left]);
+            return;
+        }
+
+        int mid = (left + right) / 2;
+        init(2 * idx, left, mid);
+        init(2 * idx + 1, mid + 1, right);
+        tree[idx] = merge(tree[2 * idx], tree[2 * idx + 1]);
     }
-    return func(resl, resr);
-}
+
+    void update(int idx, int left, int right, int pos, int val)
+    {
+        if(left > pos || right < pos)
+            return;
+        if(left == right && left == pos)
+        {
+            tree[idx].sum += val;
+            return;
+        }
+
+        int mid = (left + right) / 2;
+        update(2 * idx, left, mid, pos, val);
+        update(2 * idx + 1, mid + 1, right, pos, val);
+        tree[idx] = merge(tree[2 * idx], tree[2 * idx + 1]);
+    }
+
+    node query(int idx, int left, int right, int q_left, int q_right)
+    {
+        if(left > q_right || right < q_left)
+            return neutral;
+        if(q_left <= left && right <= q_right)
+            return tree[idx];
+
+        int mid = (left + right) / 2;
+        return merge(   query(2 * idx, left, mid, q_left, q_right),
+                        query(2 * idx + 1, mid + 1, right, q_left, q_right)); 
+    }
+};
